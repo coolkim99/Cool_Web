@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/common/Header";
 
-const MainPage = () => {
+const GuestPage = () => {
     return (
         <>
         <Header/>
@@ -9,4 +9,4 @@ const MainPage = () => {
     );
 }
 
-export default MainPage;
+export default GuestPage;

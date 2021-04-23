@@ -22,8 +22,9 @@ const Wrapper = styled.div`
     padding-left : 1rem;
     height: 4rem;
     .logo {
-        font-family: 'RixYeoljeongdo_Regular';
+        font-family: 'GmarketSansMedium';
         font-size: 1.2rem;
+        font-weight : 900;
         letter-spacing: 2px;
         @media (max-width : 349px) {
             font-size : 0.8rem;
@@ -48,6 +49,9 @@ const Navbar = styled.div`
     @media (max-width :  768px) {
         width : 300px;
     }
+    @media (max-width :  349px) {
+        width : 200px;
+    }
 `
 
 
@@ -59,6 +63,31 @@ const LinkTo = styled(Link)`
     &:hover{
         text-decoration: none;
     }
+    @media (max-width : 768px) {
+        font-size : 0.8rem;
+    }
+    @media (max-width : 349px) {
+        font-size : 0.6rem;
+    }
+`;
+
+const LinkToLogo = styled(Link)`
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-weight : 900;
+    letter-spacing: 2px;
+    &:hover{
+        text-decoration: none;
+    }
+    @media (max-width : 768px) {
+        font-size : 1rem;
+    }
+    @media (max-width : 349px) {
+        font-size : 0.8rem;
+    }
+    line-height : 75px;
 `;
 
  const Spacer = styled.div`
@@ -71,13 +100,13 @@ const Header = () => {
       <HeaderBlock>
         <Wrap>
             <Wrapper>
-                <p className = "logo">COOL PAGE</p>
+                <LinkToLogo to = '/'>COOL PAGE</LinkToLogo>
             </Wrapper>
             <Navbar>
-                <LinkTo to ="/" >About</LinkTo>
-                <LinkTo to ="/" >Portfolio</LinkTo>
-                <LinkTo to ="/" >Blog</LinkTo>
-                <LinkTo to ="/" >Guest Book</LinkTo>
+                <LinkTo to ="/about" >About</LinkTo>
+                <LinkTo to ="/portfolio" >Portfolio</LinkTo>
+                <LinkTo to ="/blog" >Blog</LinkTo>
+                <LinkTo to ="/guestbook" >Guest Book</LinkTo>
             </Navbar>
             </Wrap>
         </HeaderBlock>
