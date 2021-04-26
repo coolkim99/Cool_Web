@@ -5,5 +5,7 @@ const guests = new Router();
 
 
 guests.post('/', guestsCtrl.write);
+guests.patch('/', guestsCtrl.update);
+guests.get('/check', guestsCtrl.check);
 
 export default guests;

@@ -39,5 +39,10 @@ GuestSchema.methods.generateToken = function() {
     return token;
   };
 
+GuestSchema.statics.findByGuestname = function(guestname) {
+  // 객체에 내장되어있는 값을 사용 할 때는 객체명.키 이런식으로 쿼리하면 됩니다
+  return this.findOne({'guestname': guestname}).exec();
+};
+
 const Guest = mongoose.model('Guest', GuestSchema);
 export default Guest;
