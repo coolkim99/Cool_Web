@@ -97,3 +97,32 @@ export const check = async ctx => {
   ctx.body = userDoc.serialize();
   //ctx.body = userDoc;
 };
+
+export const list = async ctx => {
+  // query 는 문자열이기 때문에 숫자로 변환해주어야합니다.
+  // 값이 주어지지 않았다면 1 을 기본으로 사용합니다.
+  const page = parseInt(ctx.query.page || '1', 10);
+
+  if (page < 1) {
+    ctx.status = 400;
+    return;
+  }
+  
+  try {
+    const guests = await Guest.find()
+      .sort({ _id: -1 })
+      .limit(10)
+      .skip((page - 1) * 10)
+      .lean()
+      .exec();
+    const guestCount = await Guest.countDocuments().exec();
+    ctx.set('Last-Page', Math.ceil(guestCount / 10));
+    ctx.body = guests.map((guest) => ({
+      ...guest,
+      text: guest.text,
+      date: guest.date,
+    }));
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+};

@@ -11,7 +11,6 @@ const HeaderBlock = styled.div`
   background: white;
   z-index : 100;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
-  display : inline-block;
 `;
 
 const Wrap = styled(Responsive)`
