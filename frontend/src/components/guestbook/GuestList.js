@@ -4,7 +4,7 @@ import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
 
 const GuestListBlock = styled(Responsive)`
-  padding-top : 7rem;
+  padding-top : 2rem;
 `;
 
 const GuestItemBlock = styled.div`

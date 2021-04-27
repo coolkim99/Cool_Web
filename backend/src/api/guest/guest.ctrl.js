@@ -1,8 +1,33 @@
 import Guest from '../../models/guest';
 import mongoose from 'mongoose';
 import Joi from 'joi';
+import sanitizeHtml from 'sanitize-html';
 
 const { ObjectId } = mongoose.Types;
+
+const sanitizeOption = {
+  allowedTags: [
+    'h1',
+    'h2',
+    'b',
+    'i',
+    'u',
+    's',
+    'p',
+    'ul',
+    'ol',
+    'li',
+    'blockquote',
+    'a',
+    'img',
+  ],
+  allowedAttributes: {
+    a: ['href', 'name', 'target'],
+    img: ['src'],
+    li: ['class'],
+  },
+  allowedSchemes: ['data', 'http'],
+};
 
 export const write = async ctx => {
     const schema = Joi.object().keys({
@@ -119,10 +144,17 @@ export const list = async ctx => {
     ctx.set('Last-Page', Math.ceil(guestCount / 10));
     ctx.body = guests.map((guest) => ({
       ...guest,
-      text: guest.text,
+      text: removeHtml(guest.text),
       date: guest.date,
     }));
   } catch (e) {
     ctx.throw(500, e);
   }
+};
+
+const removeHtml = (body) => {
+  const filtered = sanitizeHtml(body, {
+    allowedTags: [],
+  });
+  return filtered;
 };

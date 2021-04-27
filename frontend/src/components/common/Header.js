@@ -18,7 +18,6 @@ const Wrap = styled(Responsive)`
 `
 
 const Wrapper = styled.div`
-    padding-left : 1rem;
     height: 4rem;
     .logo {
         font-family: 'GmarketSansMedium';

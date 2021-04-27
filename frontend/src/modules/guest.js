@@ -33,24 +33,13 @@ export const writeGuest = createAction(GUEST_WRITE, ({ guestname, text, password
     password
 }));
 export const setOriginalGuest = createAction(SET_ORIGINAL_GUEST, guest => guest);
-/*
-export const updateGuest = createAction(
-    GUEST_UPDATE,
-    ({ id, guestname, text, password }) => ({
-        id,
-        guestname,
-        text,
-        password
-    }),
-);
-*/
+
 // saga 생성
 const writeGuestSaga = createRequestSaga(GUEST_WRITE, guestAPI.write);
-//const updateGuestSaga = createRequestSaga(GUEST_UPDATE, guestAPI.updateGuest);
+
 
 export function* guestSaga() {
   yield takeLatest(GUEST_WRITE, writeGuestSaga);
-  //yield takeLatest(GUEST_UPDATE, updateGuestSaga);
 }
 
 const initialState = {
@@ -90,16 +79,6 @@ const guest = handleActions(
          password: guest.password,
          originalGuestId: guest._id, 
       }),
-      /*
-      [GUEST_UPDATE_SUCCESS]: (state, { payload: guest }) => ({
-        ...state,
-        guest,
-      }),
-      [GUEST_UPDATE_FAILURE]: (state, { payload: guestError }) => ({
-        ...state,
-        guestError,
-      }),
-      */
     },
     initialState,
   );
